@@ -10,7 +10,5 @@
 - Export Import
 - Filamentphp Impersonate
 - Email Sending Pake Resend
-* custom page Filament
-* Inline editing
 - Dynamic Relation Field
 - Field builder

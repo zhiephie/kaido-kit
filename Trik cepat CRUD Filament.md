@@ -1,7 +1,8 @@
-- Trik cepat CRUD Filament
+- Trik cepat CRUD Filament - stub
 - Setup Role Based Access Control (RBAC) dengan Filament
 - Setup Filament Media Library
 - Setup Filament + Rupadana API 
+- https://scramble.dedoc.co/
 - Setup Filament Settings
 - Login With Google
 - Dependent Dropdwon

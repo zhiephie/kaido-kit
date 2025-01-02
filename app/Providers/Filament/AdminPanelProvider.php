@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Login;
 use Filament\Http\Middleware\Authenticate;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Forms\Components\FileUpload;
@@ -29,7 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login()
+            ->login(Login::class)
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -69,7 +70,11 @@ class AdminPanelProvider extends PanelProvider
                     )
                     ->avatarUploadComponent(fn($fileUpload) => $fileUpload->disableLabel())
                     // OR, replace with your own component
-                    ->avatarUploadComponent(fn() => FileUpload::make('avatar_url')->disk('public'))
+                    ->avatarUploadComponent(
+                        fn() => FileUpload::make('avatar_url')
+                            ->image()
+                            ->disk('public')
+                    )
                     ->enableTwoFactorAuthentication(),
             ]);
     }

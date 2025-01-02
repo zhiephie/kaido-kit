@@ -6,12 +6,15 @@ use App\Filament\Resources\BookResource\Pages;
 use App\Filament\Resources\BookResource\RelationManagers;
 use App\Models\Book;
 use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Collection;
 
 class BookResource extends Resource
 {
@@ -23,7 +26,21 @@ class BookResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('author')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('description')
+                    ->required()
+                    ->columnSpanFull(),
+                SpatieMediaLibraryFileUpload::make('cover')
+                    ->collection('cover')
+                    ->multiple(),
+                SpatieMediaLibraryFileUpload::make('file')
+                    ->collection('file')
+                    ->multiple()
             ]);
     }
 
@@ -31,7 +48,39 @@ class BookResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title')
+                    ->wrap()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('author')
+                    ->wrap()
+                    ->searchable(),
+                SpatieMediaLibraryImageColumn::make('cover')
+                    ->collection('cover')
+                    ->filterMediaUsing(
+                        //show only first media using collection
+                        fn(Collection $media): Collection => $media->where(
+                            'order_column',
+                            1,
+                        ),
+                    ),
+
+                SpatieMediaLibraryImageColumn::make('file')
+                    ->collection('file')
+                    ->filterMediaUsing(
+                        //show only first media using collection
+                        fn(Collection $media): Collection => $media->where(
+                            'order_column',
+                            1,
+                        ),
+                    ),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

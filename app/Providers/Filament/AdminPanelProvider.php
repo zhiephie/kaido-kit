@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use Filament\Http\Middleware\Authenticate;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use Filament\Forms\Components\FileUpload;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
@@ -63,9 +64,12 @@ class AdminPanelProvider extends PanelProvider
                         shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu (default = true)
                         shouldRegisterNavigation: true, // Adds a main navigation item for the My Profile page (default = false)
                         navigationGroup: 'Settings', // Sets the navigation group for the My Profile page (default = null)
-                        hasAvatars: false, // Enables the avatar upload form component (default = false)
+                        hasAvatars: true, // Enables the avatar upload form component (default = false)
                         slug: 'my-profile'
                     )
+                    ->avatarUploadComponent(fn($fileUpload) => $fileUpload->disableLabel())
+                    // OR, replace with your own component
+                    ->avatarUploadComponent(fn() => FileUpload::make('avatar_url')->disk('public'))
                     ->enableTwoFactorAuthentication(),
             ]);
     }

@@ -18,6 +18,6 @@ jobs:
             cd /var/www/kaido.dosenngoding.com/
             git pull
             composer install
-            php artisan migrate:fresh --seed
-            php artisan db:seed --class=ShieldSeeder
+            # php artisan migrate:fresh --seed
+            # php artisan db:seed --class=ShieldSeeder
             php artisan filament:optimize

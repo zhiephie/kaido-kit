@@ -37,9 +37,11 @@ class BookResource extends Resource
                     ->columnSpanFull(),
                 SpatieMediaLibraryFileUpload::make('cover')
                     ->collection('cover')
+                    ->image()
                     ->multiple(),
                 SpatieMediaLibraryFileUpload::make('file')
                     ->collection('file')
+                    ->acceptedFileTypes(['application/pdf'])
                     ->multiple()
             ]);
     }

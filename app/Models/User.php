@@ -13,7 +13,7 @@ use Illuminate\Notifications\Notifiable;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements HasAvatar
+class User extends Authenticatable implements FilamentUser, HasAvatar
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRoles, TwoFactorAuthenticatable;
@@ -58,8 +58,8 @@ class User extends Authenticatable implements HasAvatar
         return asset($this->avatar_url);
     }
 
-    // public function canAccessPanel(Panel $panel): bool
-    // {
-    //     return true;
-    // }
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
 }

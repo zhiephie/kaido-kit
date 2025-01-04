@@ -38,6 +38,7 @@ class BookResource extends Resource implements HasShieldPermissions
             'delete_any',
             'force_delete',
             'force_delete_any',
+            //titip token abilities
             'book:create',
             'book:update',
             'book:delete',

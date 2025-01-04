@@ -22,7 +22,16 @@ class AuthController extends Controller
             $user->tokens()->delete();
             //token baru di create
             $abilities = $user->getAllPermissions()->pluck('name')->toArray();
-            $token = $user->createToken('', ['book:pagination'])->plainTextToken;
+            //from $ablities array filter only element that contains : and return it
+            $abilities = array_filter($abilities, function ($ability) {
+                return strpos($ability, ':') !== false;
+            });
+            //from this filtered $abilities cut any string after _ and return it
+            $abilities = array_map(function ($ability) {
+                return explode('_', $ability)[0];
+            }, $abilities);
+            //create token with abilities
+            $token = $user->createToken('token', $abilities)->plainTextToken;
 
             return new LoginResource([
                 'token' => $token,

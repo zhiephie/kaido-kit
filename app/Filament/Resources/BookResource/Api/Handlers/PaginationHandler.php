@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources\BookResource\Api\Handlers;
 
 use Illuminate\Http\Request;
@@ -7,11 +6,10 @@ use Rupadana\ApiService\Http\Handlers;
 use Spatie\QueryBuilder\QueryBuilder;
 use App\Filament\Resources\BookResource;
 
-class PaginationHandler extends Handlers
-{
+class PaginationHandler extends Handlers {
     public static string | null $uri = '/';
     public static string | null $resource = BookResource::class;
-    // public static bool $public = true;
+
 
     public function handler()
     {
@@ -19,12 +17,12 @@ class PaginationHandler extends Handlers
         $model = static::getModel();
 
         $query = QueryBuilder::for($query)
-            ->allowedFields($this->getAllowedFields() ?? [])
-            ->allowedSorts($this->getAllowedSorts() ?? [])
-            ->allowedFilters($this->getAllowedFilters() ?? [])
-            ->allowedIncludes($this->getAllowedIncludes() ?? [])
-            ->paginate(request()->query('per_page'))
-            ->appends(request()->query());
+        ->allowedFields($this->getAllowedFields() ?? [])
+        ->allowedSorts($this->getAllowedSorts() ?? [])
+        ->allowedFilters($this->getAllowedFilters() ?? [])
+        ->allowedIncludes($this->getAllowedIncludes() ?? [])
+        ->paginate(request()->query('per_page'))
+        ->appends(request()->query());
 
         return static::getApiTransformer()::collection($query);
     }

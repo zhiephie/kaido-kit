@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BookResource\Pages;
 use App\Filament\Resources\BookResource\RelationManagers;
 use App\Models\Book;
+use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
@@ -16,12 +17,34 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Collection;
 
-class BookResource extends Resource
+class BookResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = Book::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getPermissionPrefixes(): array
+    {
+        return [
+            'view',
+            'view_any',
+            'create',
+            'update',
+            'restore',
+            'restore_any',
+            'replicate',
+            'reorder',
+            'delete',
+            'delete_any',
+            'force_delete',
+            'force_delete_any',
+            'book:create',
+            'book:update',
+            'book:delete',
+            'book:pagination',
+            'book:detail',
+        ];
+    }
     public static function form(Form $form): Form
     {
         return $form

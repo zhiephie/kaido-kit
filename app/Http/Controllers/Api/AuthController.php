@@ -21,7 +21,9 @@ class AuthController extends Controller
             //token lama dihapus
             $user->tokens()->delete();
             //token baru di create
-            $token = $user->createToken('token')->plainTextToken;
+            $abilities = $user->getAllPermissions()->pluck('name')->toArray();
+            $token = $user->createToken('', ['book:pagination'])->plainTextToken;
+
             return new LoginResource([
                 'token' => $token,
                 'user' => $user

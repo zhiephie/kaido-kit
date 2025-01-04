@@ -22,14 +22,12 @@ class AuthController extends Controller
             $user->tokens()->delete();
             //token baru di create
             $abilities = $user->getAllPermissions()->pluck('name')->toArray();
-            //from $ablities array filter only element that contains : and return it
-            $abilities = array_filter($abilities, function ($ability) {
-                return strpos($ability, ':') !== false;
-            });
-            //from this filtered $abilities cut any string after _ and return it
+            // Filter abilities containing ':' and cut any string after '_'
             $abilities = array_map(function ($ability) {
                 return explode('_', $ability)[0];
-            }, $abilities);
+            }, array_filter($abilities, function ($ability) {
+                return strpos($ability, ':') !== false;
+            }));
             //create token with abilities
             $token = $user->createToken('token', $abilities)->plainTextToken;
 

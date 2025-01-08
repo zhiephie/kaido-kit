@@ -10,11 +10,15 @@ use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\Section as InfolistSection;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -33,17 +37,19 @@ class UserResource extends Resource
                 Section::make(
                     'User Information'
                 )->schema([
-                    Select::make('roles')
-                        ->multiple()
-                        ->relationship('roles', 'name')
-                        ->preload(),
+                    TextInput::make('name')
+                        ->required(),
+                    TextInput::make('email')
+                        ->required(),
+                    TextInput::make('password')
+                        ->required(),
                 ]),
             ]);
     }
 
     public static function canCreate(): bool
     {
-        return false;
+        return true;
     }
 
     public static function table(Table $table): Table
@@ -67,8 +73,16 @@ class UserResource extends Resource
                     ->preload(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()->label('Assign Roles'),
+                Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
+                Action::make('Set Role')
+                    ->icon('heroicon-m-adjustments-vertical')
+                    ->form([
+                        Select::make('role')
+                            ->relationship('roles', 'name')
+                            ->multiple()
+                            ->required(),
+                    ]),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
@@ -98,7 +112,10 @@ class UserResource extends Resource
     {
         return $infolist
             ->schema([
-                TextEntry::make('name'),
+                InfolistSection::make('User Information')->schema([
+                    TextEntry::make('name'),
+                    TextEntry::make('email'),
+                ]),
             ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Settings;
 
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Spatie\LaravelSettings\Settings;
 
 class KaidoSetting extends Settings

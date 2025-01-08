@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Settings\KaidoSetting;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -12,6 +13,7 @@ use Filament\Pages\SettingsPage;
 
 class ManageSetting extends SettingsPage
 {
+    use HasPageShield;
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
 
     protected static string $settings = KaidoSetting::class;

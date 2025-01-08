@@ -23,6 +23,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use STS\FilamentImpersonate\Tables\Actions\Impersonate;
 
 class UserResource extends Resource
 {
@@ -83,6 +84,7 @@ class UserResource extends Resource
                             ->multiple()
                             ->required(),
                     ]),
+                Impersonate::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

@@ -20,4 +20,5 @@ jobs:
             composer install
             # php artisan migrate:fresh --seed
             # php artisan db:seed --class=ShieldSeeder
+            php artisan shield:generate --all
             php artisan filament:optimize

@@ -7,6 +7,7 @@ use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
@@ -30,26 +31,17 @@ class UserResource extends Resource
                 Section::make(
                     'User Information'
                 )->schema([
-                    Forms\Components\TextInput::make('name')
-                        ->required()
-                        ->maxLength(255),
-                    Forms\Components\TextInput::make('email')
-                        ->email()
-                        ->required()
-                        ->maxLength(255),
-                    Forms\Components\DateTimePicker::make('email_verified_at'),
-                    Forms\Components\TextInput::make('password')
-                        ->password()
-                        ->required()
-                        ->maxLength(255),
-                    Forms\Components\TextInput::make('avatar_url')
-                        ->maxLength(255),
                     Select::make('roles')
                         ->multiple()
                         ->relationship('roles', 'name')
                         ->preload(),
                 ]),
             ]);
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function table(Table $table): Table
@@ -73,6 +65,7 @@ class UserResource extends Resource
                     ->preload(),
             ])
             ->actions([
+                Tables\Actions\EditAction::make()->label('Assign Roles'),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
 

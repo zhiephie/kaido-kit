@@ -86,35 +86,14 @@ class AdminPanelProvider extends PanelProvider
                     )
                     ->enableTwoFactorAuthentication(),
                 FilamentSocialitePlugin::make()
-                    // (required) Add providers corresponding with providers in `config/services.php`.
                     ->providers([
-                        // Create a provider 'gitlab' corresponding to the Socialite driver with the same name.
-                        Provider::make('gitlab')
-                            ->label('GitLab')
-                            ->icon('fab-gitlab')
-                            ->color(Color::hex('#2f2a6b'))
-                            ->outlined(false)
-                            ->stateless(false)
-                            ->scopes(['...'])
-                            ->with(['...']),
                         Provider::make('google')
                             ->label('Google')
                             ->icon('fab-google')
                             ->color(Color::hex('#2f2a6b'))
                             ->outlined(false)
                             ->stateless(false)
-                            ->scopes(['...'])
-                            ->with(['...']),
-                    ])
-                    // (optional) Override the panel slug to be used in the oauth routes. Defaults to the panel ID.
-                    ->slug('admin')
-                    // (optional) Enable/disable registration of new (socialite-) users.
-                    ->registration(true)
-                    // (optional) Enable/disable registration of new (socialite-) users using a callback.
-                    // In this example, a login flow can only continue if there exists a user (Authenticatable) already.
-                    ->registration(fn(string $provider, SocialiteUserContract $oauthUser, ?Authenticatable $user) => (bool) $user)
-                    // (optional) Change the associated model class.
-                    ->userModelClass(\App\Models\User::class)
+                    ])->registration(true)
             ]);
     }
 }

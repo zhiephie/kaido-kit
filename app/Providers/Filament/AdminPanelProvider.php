@@ -98,6 +98,7 @@ class AdminPanelProvider extends PanelProvider
                             ->outlined(false)
                             ->stateless(false)
                     ])->registration(true)
-            ]);
+            ])
+            ->databaseNotifications();
     }
 }

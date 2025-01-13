@@ -22,6 +22,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ExportBulkAction;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -91,12 +92,15 @@ class UserResource extends Resource
                 Tables\Actions\DeleteAction::make(),
             ])
             ->headerActions([
-                ExportAction::make(UserExporter::class)
+                ExportAction::make()
+                    ->exporter(UserExporter::class)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                ExportBulkAction::make()
+                    ->exporter(UserExporter::class)
             ]);
     }
 

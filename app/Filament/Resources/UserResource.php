@@ -3,13 +3,9 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Exports\UserExporter;
+use App\Filament\Imports\UserImporter;
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
-use Filament\Actions\ExportAction as ActionsExportAction;
-use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -17,16 +13,14 @@ use Filament\Forms\Form;
 use Filament\Infolists\Components\Section as InfolistSection;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
-use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ExportBulkAction;
+use Filament\Tables\Actions\ImportAction;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use STS\FilamentImpersonate\Tables\Actions\Impersonate;
 
 class UserResource extends Resource
@@ -93,7 +87,9 @@ class UserResource extends Resource
             ])
             ->headerActions([
                 ExportAction::make()
-                    ->exporter(UserExporter::class)
+                    ->exporter(UserExporter::class),
+                ImportAction::make()
+                    ->importer(UserImporter::class)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

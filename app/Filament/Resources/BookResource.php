@@ -6,6 +6,7 @@ use App\Filament\Exports\BookExporter;
 use App\Filament\Imports\BookImporter;
 use App\Filament\Resources\BookResource\Pages;
 use App\Models\Book;
+use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,11 +15,34 @@ use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ImportAction;
 use Filament\Tables\Table;
 
-class BookResource extends Resource
+class BookResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $model = Book::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
+
+    public static function getPermissionPrefixes(): array
+    {
+        return [
+            'view',
+            'view_any',
+            'create',
+            'update',
+            'restore',
+            'restore_any',
+            'replicate',
+            'reorder',
+            'delete',
+            'delete_any',
+            'force_delete',
+            'force_delete_any',
+            'book:create',
+            'book:update',
+            'book:delete',
+            'book:pagination',
+            'book:detail',
+        ];
+    }
 
     public static function form(Form $form): Form
     {

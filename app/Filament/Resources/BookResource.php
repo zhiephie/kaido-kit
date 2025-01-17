@@ -2,12 +2,16 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\BookExporter;
+use App\Filament\Imports\BookImporter;
 use App\Filament\Resources\BookResource\Pages;
 use App\Models\Book;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ImportAction;
 use Filament\Tables\Table;
 
 class BookResource extends Resource
@@ -56,6 +60,10 @@ class BookResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
 
+            ])
+            ->headerActions([
+                ExportAction::make()->exporter(BookExporter::class),
+                ImportAction::make()->importer(BookImporter::class),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

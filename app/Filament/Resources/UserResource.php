@@ -72,8 +72,8 @@ class UserResource extends Resource
                     ->preload(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
                 Action::make('Set Role')
                     ->icon('heroicon-m-adjustments-vertical')
                     ->form([
@@ -82,7 +82,7 @@ class UserResource extends Resource
                             ->multiple()
                             ->required(),
                     ]),
-                Impersonate::make(),
+                // Impersonate::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->headerActions([

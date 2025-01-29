@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Login;
+use App\Settings\KaidoSetting;
 use Filament\Http\Middleware\Authenticate;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use DutchCodingCompany\FilamentSocialite\FilamentSocialitePlugin;
@@ -33,16 +34,22 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        $settings = app(KaidoSetting::class);
+
         return $panel
             ->default()
             ->id('admin')
             ->path('')
-            ->registration()
-            ->login(Login::class)
-            ->registration()
+            ->when($settings->registration_enabled, function (Panel $panel) {
+                $panel->registration();
+            })
+            ->when($settings->login_enabled, function (Panel $panel) {
+                $panel->login(Login::class);
+            })
             ->emailVerification()
-            ->passwordReset()
-            // ->login()
+            ->when($settings->password_reset_enabled, function (Panel $panel) {
+                $panel->passwordReset();
+            })
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -70,35 +77,48 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->plugins([
-                FilamentShieldPlugin::make(),
-                ApiServicePlugin::make(),
-                BreezyCore::make()
-                    ->myProfile(
-                        shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu (default = true)
-                        shouldRegisterNavigation: true, // Adds a main navigation item for the My Profile page (default = false)
-                        navigationGroup: 'Settings', // Sets the navigation group for the My Profile page (default = null)
-                        hasAvatars: true, // Enables the avatar upload form component (default = false)
-                        slug: 'my-profile'
-                    )
-                    ->avatarUploadComponent(fn($fileUpload) => $fileUpload->disableLabel())
-                    // OR, replace with your own component
-                    ->avatarUploadComponent(
-                        fn() => FileUpload::make('avatar_url')
-                            ->image()
-                            ->disk('public')
-                    )
-                    ->enableTwoFactorAuthentication(),
-                FilamentSocialitePlugin::make()
-                    ->providers([
-                        Provider::make('google')
-                            ->label('Google')
-                            ->icon('fab-google')
-                            ->color(Color::hex('#2f2a6b'))
-                            ->outlined(false)
-                            ->stateless(false)
-                    ])->registration(true)
-            ])
+            ->plugins(
+                $this->getPlugins()
+            )
             ->databaseNotifications();
+    }
+
+    private function getPlugins(): array
+    {
+        $settings = app(KaidoSetting::class);
+        $plugins = [
+            FilamentShieldPlugin::make(),
+            ApiServicePlugin::make(),
+            BreezyCore::make()
+                ->myProfile(
+                    shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu (default = true)
+                    shouldRegisterNavigation: true, // Adds a main navigation item for the My Profile page (default = false)
+                    navigationGroup: 'Settings', // Sets the navigation group for the My Profile page (default = null)
+                    hasAvatars: true, // Enables the avatar upload form component (default = false)
+                    slug: 'my-profile'
+                )
+                ->avatarUploadComponent(fn($fileUpload) => $fileUpload->disableLabel())
+                // OR, replace with your own component
+                ->avatarUploadComponent(
+                    fn() => FileUpload::make('avatar_url')
+                        ->image()
+                        ->disk('public')
+                )
+                ->enableTwoFactorAuthentication(),
+        ];
+
+        if ($settings->sso_enabled) {
+            $plugins[] =
+                FilamentSocialitePlugin::make()
+                ->providers([
+                    Provider::make('google')
+                        ->label('Google')
+                        ->icon('fab-google')
+                        ->color(Color::hex('#2f2a6b'))
+                        ->outlined(false)
+                        ->stateless(false)
+                ])->registration(true);
+        }
+        return $plugins;
     }
 }

@@ -29,8 +29,15 @@ class ManageSetting extends SettingsPage
                         ->label('Site Name')
                         ->required(),
                     Toggle::make('site_active')
-                        ->label('Site Active')
-                        ->inline(false),
+                        ->label('Site Active'),
+                    Toggle::make('registration_enabled')
+                        ->label('Registration Enabled'),
+                    Toggle::make('login_enabled')
+                        ->label('Login Enabled'),
+                    Toggle::make('password_reset_enabled')
+                        ->label('Password Reset Enabled'),
+                    Toggle::make('sso_enabled')
+                        ->label('SSO Enabled'),
                 ]),
             ]);
     }

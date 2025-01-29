@@ -28,15 +28,21 @@ use Rupadana\ApiService\ApiServicePlugin;
 
 use Laravel\Socialite\Contracts\User as SocialiteUserContract;
 use Illuminate\Contracts\Auth\Authenticatable;
-
+use Illuminate\Support\Facades\Schema;
 
 class AdminPanelProvider extends PanelProvider
 {
-    private KaidoSetting $settings;
+    private ?KaidoSetting $settings = null;
     //constructor
     public function __construct()
     {
-        $this->settings = app(KaidoSetting::class);
+        //this is feels bad but this is the solution that i can think for now :D
+        // Check if settings table exists first
+        if (Schema::hasTable('settings')) {
+            $this->settings = app(KaidoSetting::class);
+        } else {
+            $this->settings = null;
+        }
     }
 
     public function panel(Panel $panel): Panel
@@ -45,9 +51,9 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('')
-            ->when($this->settings->login_enabled, fn($panel) => $panel->login(Login::class))
-            ->when($this->settings->registration_enabled, fn($panel) => $panel->registration())
-            ->when($this->settings->password_reset_enabled, fn($panel) => $panel->passwordReset())
+            ->when($this->settings->login_enabled ?? true, fn($panel) => $panel->login(Login::class))
+            ->when($this->settings->registration_enabled ?? true, fn($panel) => $panel->registration())
+            ->when($this->settings->password_reset_enabled ?? true, fn($panel) => $panel->passwordReset())
             ->emailVerification()
             ->colors([
                 'primary' => Color::Amber,
@@ -84,7 +90,6 @@ class AdminPanelProvider extends PanelProvider
 
     private function getPlugins(): array
     {
-        $settings = app(KaidoSetting::class);
         $plugins = [
             FilamentShieldPlugin::make(),
             ApiServicePlugin::make(),
@@ -106,7 +111,7 @@ class AdminPanelProvider extends PanelProvider
                 ->enableTwoFactorAuthentication(),
         ];
 
-        if ($settings->sso_enabled) {
+        if ($this->settings->sso_enabled ?? true) {
             $plugins[] =
                 FilamentSocialitePlugin::make()
                 ->providers([

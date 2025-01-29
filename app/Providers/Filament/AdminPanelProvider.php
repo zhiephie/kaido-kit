@@ -32,24 +32,23 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 class AdminPanelProvider extends PanelProvider
 {
+    private KaidoSetting $settings;
+    //constructor
+    public function __construct()
+    {
+        $this->settings = app(KaidoSetting::class);
+    }
+
     public function panel(Panel $panel): Panel
     {
-        $settings = app(KaidoSetting::class);
-
         return $panel
             ->default()
             ->id('admin')
             ->path('')
-            ->when($settings->registration_enabled, function (Panel $panel) {
-                $panel->registration();
-            })
-            ->when($settings->login_enabled, function (Panel $panel) {
-                $panel->login(Login::class);
-            })
+            ->when($this->settings->login_enabled, fn($panel) => $panel->login(Login::class))
+            ->when($this->settings->registration_enabled, fn($panel) => $panel->registration())
+            ->when($this->settings->password_reset_enabled, fn($panel) => $panel->passwordReset())
             ->emailVerification()
-            ->when($settings->password_reset_enabled, function (Panel $panel) {
-                $panel->passwordReset();
-            })
             ->colors([
                 'primary' => Color::Amber,
             ])

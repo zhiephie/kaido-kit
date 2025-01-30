@@ -119,7 +119,7 @@ class AdminPanelProvider extends PanelProvider
                         ->label('Google')
                         ->icon('fab-google')
                         ->color(Color::hex('#2f2a6b'))
-                        ->outlined(false)
+                        ->outlined(true)
                         ->stateless(false)
                 ])->registration(true);
         }

@@ -38,9 +38,11 @@ class AdminPanelProvider extends PanelProvider
     {
         //this is feels bad but this is the solution that i can think for now :D
         // Check if settings table exists first
-        if (Schema::hasTable('settings')) {
-            $this->settings = app(KaidoSetting::class);
-        } else {
+        try {
+            if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
+                $this->settings = app(KaidoSetting::class);
+            }
+        } catch (\Exception $e) {
             $this->settings = null;
         }
     }

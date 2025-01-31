@@ -124,11 +124,11 @@ A powerful and opinionated FilamentPHP starter kit designed to accelerate your a
     
 11. If run successfully you will get this login interface
     
-    ![image.png](attachment:f583c8a6-8d4f-4ade-9b8c-5b816444ba04:image.png)
+    ![image.png](.github/images/login-screen.png)
     
 12. When signed in it will show this (not much yet but it getting there :) )
     
-    ![image.png](attachment:34f7651e-187b-433e-96db-b7e07781ae94:image.png)
+    ![image.png](.github/images/after-login-without-rbac.png)
     
 13. Next step is to setup the RBAC, first generate the role and permission
     
@@ -143,11 +143,11 @@ A powerful and opinionated FilamentPHP starter kit designed to accelerate your a
     php artisan shield:super-admin
     ```
     
-    ![image.png](attachment:4343b565-6719-4b85-8ea4-1ad5715cf43f:image.png)
+    ![image.png](.github/images/provide-superadmin.png)
     
 16. Choose your super admin user and login again.
     
-    ![image.png](attachment:30a22b31-c3a0-474a-9493-41a35948c2c3:image.png)
+    ![image.png](.github/images/after-login-rbac.png)
 
 ## 🤝 Contributing
 
@@ -167,10 +167,11 @@ We welcome contributions! Please follow these steps:
 
 ## 💬 Support
 
-- 🐛 [Report a bug](https://github.com/your-username/kaido-kit/issues)
-- 💡 [Request a feature](https://github.com/your-username/kaido-kit/issues)
-- 📧 [Email support](mailto:your-email@example.com)
-- 💬 [Discord community](https://discord.gg/your-invite)
+- 🐛 [Report a bug](https://github.com/siubie/kaido-kit/issues)
+- 💡 [Request a feature](https://github.com/siubie/kaido-kit/issues)
+- 📧 [Email support](mailto:putraprima@gmail.com)
+- 💬 [Discord community](https://discord.com/invite/RwqXDUJGPg)
+- 💬 [Whatsapp community](https://chat.whatsapp.com/HJtRp9Eo5wl6NhYIJbkuZL)
 
 ## ⭐ Show your support
 

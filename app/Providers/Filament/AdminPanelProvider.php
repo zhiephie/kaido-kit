@@ -16,6 +16,7 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
+use Hasnayeen\Themes\ThemesPlugin;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -38,9 +39,9 @@ class AdminPanelProvider extends PanelProvider
     {
         //this is feels bad but this is the solution that i can think for now :D
         // Check if settings table exists first
-        if (Schema::hasTable('settings')) {
+        try {
             $this->settings = app(KaidoSetting::class);
-        } else {
+        } catch (\Exception $e) {
             $this->settings = null;
         }
     }
@@ -93,6 +94,7 @@ class AdminPanelProvider extends PanelProvider
         $plugins = [
             FilamentShieldPlugin::make(),
             ApiServicePlugin::make(),
+            ThemesPlugin::make(),
             BreezyCore::make()
                 ->myProfile(
                     shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu (default = true)

@@ -16,6 +16,7 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
+use Hasnayeen\Themes\Http\Middleware\SetTheme;
 use Hasnayeen\Themes\ThemesPlugin;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -82,8 +83,12 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->sidebarCollapsibleOnDesktop(true)
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->middleware([
+                SetTheme::class
             ])
             ->plugins(
                 $this->getPlugins()
@@ -94,9 +99,9 @@ class AdminPanelProvider extends PanelProvider
     private function getPlugins(): array
     {
         $plugins = [
+            ThemesPlugin::make(),
             FilamentShieldPlugin::make(),
             ApiServicePlugin::make(),
-            ThemesPlugin::make(),
             BreezyCore::make()
                 ->myProfile(
                     shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu (default = true)

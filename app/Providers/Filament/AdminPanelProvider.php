@@ -40,7 +40,9 @@ class AdminPanelProvider extends PanelProvider
         //this is feels bad but this is the solution that i can think for now :D
         // Check if settings table exists first
         try {
-            $this->settings = app(KaidoSetting::class);
+            if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
+                $this->settings = app(KaidoSetting::class);
+            }
         } catch (\Exception $e) {
             $this->settings = null;
         }

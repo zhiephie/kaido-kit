@@ -1,66 +1,177 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 Kaido Kit FilamentPhp Starter Code
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A powerful and opinionated FilamentPHP starter kit designed to accelerate your admin panel development. Kaido Kit provides a robust foundation with pre-configured plugins, configuration and best practices for building feature-rich admin interfaces.
 
-## About Laravel
+## ✨ Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 🛠️ Developer Experience
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- ⚡ Quick CRUD generation with customized [FilamentPHP](https://filamentphp.com/) stubs
+    - Optimized UX out of the box
+    - No need to modify generated resources
+- 🔄 Auto reload on save for rapid development
+- 📚 Easy API documentation using [Scramble](https://scramble.dedoc.co/)
+- 📤 Built-in Export and Import examples in Filament resources
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🔐 Authentication & Authorization
 
-## Learning Laravel
+- 🛡️ Role-Based Access Control (RBAC) using [Filament Shield](https://filamentphp.com/plugins/bezhansalleh-shield)
+- 🔑 Enhanced login page with custom design
+- 🌐 Social login with Google via [Filament Socialite](https://filamentphp.com/plugins/dododedodonl-socialite)
+- 👤 User profile management with [Filament Breezy](https://filamentphp.com/plugins/jeffgreco-breezy)
+- 🔒 Instant 2-Factor Authentication capabilities
+- 👥 Simple user-to-role assignment
+- 🎭 User impersonation via [Filament Impersonate](https://filamentphp.com/plugins/joseph-szobody-impersonate)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 📡 API & Integration
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- 🚀 Full API support with [Filament API Service](https://filamentphp.com/plugins/rupadana-api-service)
+    - Seamlessly integrated with Shield
+    - Ready-to-use API endpoints
+- 📨 Email integration using [Resend](https://resend.com/)
+- 📝 Auto-generated API documentation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 📁 Media & Content Management
 
-## Laravel Sponsors
+- 🖼️ Integrated [Filament Media Library](https://filamentphp.com/plugins/filament-spatie-media-library)
+    - Easy media handling process
+    - [Spatie Media Library](https://spatie.be/docs/laravel-medialibrary) support
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### ⚙️ Configuration & Settings
 
-### Premium Partners
+- 🎛️ Dynamic plugin management via [Filament Settings](https://filamentphp.com/plugins/filament-spatie-settings)
+    - Enable/disable features on the fly
+    - [Spatie Laravel Settings](https://github.com/spatie/laravel-settings) integration
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## 🚀 Quick Start
 
-## Contributing
+1. Clone the repositories
+    
+    ```php
+    git@github.com:siubie/kaido-kit.git
+    ```
+    
+2. Composer install
+    
+    ```php
+    composer install
+    ```
+    
+3. Npm Install
+    
+    ```php
+    npm install
+    ```
+    
+4. Copy .env
+    
+    ```php
+    cp .env.example .env
+    ```
+    
+5. Configure your database in .env
+    
+    ```php
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=kaido_kit
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+    
+6. Configure your google sign in cliend id and secret (optional)
+    
+    ```php
+    #google auth
+    GOOGLE_CLIENT_ID=
+    GOOGLE_CLIENT_SECRET=
+    GOOGLE_REDIRECT_URI=http://localhost:8000/admin/oauth/callback/google
+    ```
+    
+7. Configure your resend for email sending (optional)
+    
+    ```php
+    #resend
+    MAIL_MAILER=resend
+    MAIL_HOST=127.0.0.1
+    MAIL_PORT=2525
+    MAIL_USERNAME=null
+    MAIL_PASSWORD=null
+    MAIL_ENCRYPTION=null
+    RESEND_API_KEY=
+    MAIL_FROM_ADDRESS="admin@domain.com"
+    MAIL_FROM_NAME="${APP_NAME}"
+    ```
+    
+8. Migrate your database
+    
+    ```php
+    php artisan migrate:fresh --seed
+    ```
+    
+9. Artisan Serve
+    
+    ```php
+    php artisan serve
+    ```
+    
+10. Npm run dev
+    
+    ```php
+    npm run dev
+    ```
+    
+11. If run successfully you will get this login interface
+    
+    ![image.png](attachment:f583c8a6-8d4f-4ade-9b8c-5b816444ba04:image.png)
+    
+12. When signed in it will show this (not much yet but it getting there :) )
+    
+    ![image.png](attachment:34f7651e-187b-433e-96db-b7e07781ae94:image.png)
+    
+13. Next step is to setup the RBAC, first generate the role and permission
+    
+    ```php
+    php artisan shield:generate --all
+    ```
+    
+14. It will ask which panel do you want to generate permission/policies for choose the admin panel.
+15. Setup the super admin using this command
+    
+    ```php
+    php artisan shield:super-admin
+    ```
+    
+    ![image.png](attachment:4343b565-6719-4b85-8ea4-1ad5715cf43f:image.png)
+    
+16. Choose your super admin user and login again.
+    
+    ![image.png](attachment:30a22b31-c3a0-474a-9493-41a35948c2c3:image.png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🤝 Contributing
 
-## Code of Conduct
+We welcome contributions! Please follow these steps:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## Security Vulnerabilities
+## 🙏 Acknowledgments
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- [FilamentPHP](https://filamentphp.com/)
+- [Laravel](https://laravel.com/)
+- All our amazing contributors
 
-## License
+## 💬 Support
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- 🐛 [Report a bug](https://github.com/your-username/kaido-kit/issues)
+- 💡 [Request a feature](https://github.com/your-username/kaido-kit/issues)
+- 📧 [Email support](mailto:your-email@example.com)
+- 💬 [Discord community](https://discord.gg/your-invite)
+
+## ⭐ Show your support
+
+Give a ⭐️ if this project helped you!

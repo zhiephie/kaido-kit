@@ -52,10 +52,10 @@ A powerful and opinionated FilamentPHP starter kit designed to accelerate your a
 
 ## 🚀 Quick Start
 
-1. Create new project using composer
+1. Clone the repositories
     
     ```php
-    composer create-project siubie/kaido-kit
+    git@github.com:siubie/kaido-kit.git
     ```
     
 2. Composer install

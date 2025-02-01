@@ -5,7 +5,7 @@ A powerful and opinionated FilamentPHP starter kit designed to accelerate your a
 ![GitHub stars](https://img.shields.io/github/stars/siubie/kaido-kit?style=flat-square)
 ![GitHub forks](https://img.shields.io/github/forks/siubie/kaido-kit?style=flat-square)
 ![GitHub issues](https://img.shields.io/github/issues/siubie/kaido-kit?style=flat-square)
-![GitHub license](https://img.shields.io/github/license/siubie/kaido-kit?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
 ![PHP Version](https://img.shields.io/badge/PHP-8.2-blue?style=flat-square&logo=php)
 ![Laravel Version](https://img.shields.io/badge/Laravel-11.0-red?style=flat-square&logo=laravel)
 ![Filament Version](https://img.shields.io/badge/Filament-3.2-purple?style=flat-square)

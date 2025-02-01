@@ -1,11 +1,14 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "siubie/kaido-kit",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Filament Admin Panel Starter Kit with pre-configured packages and settings",
     "keywords": [
         "laravel",
-        "framework"
+        "framework",
+        "filament",
+        "admin-panel",
+        "starter-kit"
     ],
     "license": "MIT",
     "require": {

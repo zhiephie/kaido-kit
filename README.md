@@ -156,6 +156,18 @@ A powerful and opinionated FilamentPHP starter kit designed to accelerate your a
     
     ![image.png](.github/images/after-login-rbac.png)
 
+
+## Security
+Set your app Debug to false in .env file
+```php
+APP_NAME="Kaido-Kit"
+APP_ENV=local
+APP_KEY=base64:gWUd7RPrCZm6iu7qFddY3039BQLroNHJ0nqKcBr8eeA=
+APP_DEBUG=false
+APP_TIMEZONE=UTC
+APP_URL=https://localhost:8000
+```
+
 ## 🤝 Contributing
 
 We welcome contributions! Please follow these steps:

@@ -10,7 +10,7 @@ A powerful and opinionated FilamentPHP starter kit designed to accelerate your a
 ![Laravel Version](https://img.shields.io/badge/Laravel-11.0-red?style=flat-square&logo=laravel)
 ![Filament Version](https://img.shields.io/badge/Filament-3.2-purple?style=flat-square)
 ## Introduction Video
-[![Build FilamentPhp Apps 10x Faster | Kaido-Kit Starter Kit (Complete Demo)](http://img.youtube.com/vi/t6q1zBqaBGU/0.jpg)](http://www.youtube.com/watch?v=t6q1zBqaBGU "Build FilamentPhp Apps 10x Faster | Kaido-Kit Starter Kit (Complete Demo)")
+[![Build FilamentPhp Apps 10x Faster | Kaido-Kit Starter Kit (Complete Demo)](https://img.youtube.com/vi/t6q1zBqaBGU/maxresdefault.jpg)](http://www.youtube.com/watch?v=t6q1zBqaBGU "Build FilamentPhp Apps 10x Faster | Kaido-Kit Starter Kit (Complete Demo)")
 ## ✨ Features
 
 ### 🛠️ Developer Experience

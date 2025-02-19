@@ -116,7 +116,7 @@ A powerful and opinionated FilamentPHP starter kit designed to accelerate your a
 8. Migrate your database
     
     ```php
-    php artisan migrate:fresh --seed
+    php artisan migrate --seed
     ```
     
 9. Artisan Serve

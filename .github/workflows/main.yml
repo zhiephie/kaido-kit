@@ -19,6 +19,6 @@ jobs:
             git pull
             composer install
             php artisan migrate:fresh --seed
-            php artisan shield:generate --all
+            php artisan shield:generate --all --panel=admin
             php artisan shield:super-admin --user=11
             php artisan filament:optimize

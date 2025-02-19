@@ -76,7 +76,7 @@ class UserResource extends Resource
                             ->icon('heroicon-m-envelope')
                             ->searchable()
                             ->grow(false),
-                    ])->alignStart()->visibleFrom('lg')
+                    ])->alignStart()->visibleFrom('lg')->space(1)
                 ]),
             ])
             ->filters([

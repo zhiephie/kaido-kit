@@ -158,6 +158,12 @@ A powerful and opinionated FilamentPHP starter kit designed to accelerate your a
     
     ![image.png](.github/images/after-login-rbac.png)
 
+17. If you are running it on your local computer, to download the export file, you need to run:
+    
+    ```php
+    php artisan queue:work
+    ```
+
 
 ## Security
 Set your app Debug to false in .env file

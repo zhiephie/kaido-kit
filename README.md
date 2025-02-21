@@ -119,16 +119,10 @@ A powerful and opinionated FilamentPHP starter kit designed to accelerate your a
     php artisan migrate --seed
     ```
     
-9. Artisan Serve
+9. Serve the Application
     
-    ```php
-    php artisan serve
-    ```
-    
-10. Npm run dev
-    
-    ```php
-    npm run dev
+    ```script
+    composer run dev
     ```
     
 11. If run successfully you will get this login interface
@@ -157,12 +151,6 @@ A powerful and opinionated FilamentPHP starter kit designed to accelerate your a
 16. Choose your super admin user and login again.
     
     ![image.png](.github/images/after-login-rbac.png)
-
-17. If you are running it on your local computer, to download the export file, you need to run:
-    
-    ```php
-    php artisan queue:work
-    ```
 
 
 ## Security

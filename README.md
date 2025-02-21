@@ -203,3 +203,6 @@ We welcome contributions! Please follow these steps:
 ## ⭐ Show your support
 
 Give a ⭐️ if this project helped you!
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=siubie/kaido-kit&type=Date)](https://star-history.com/#siubie/kaido-kit&Date)

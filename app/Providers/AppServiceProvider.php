@@ -31,5 +31,8 @@ class AppServiceProvider extends ServiceProvider
         Event::listen(function (\SocialiteProviders\Manager\SocialiteWasCalled $event) {
             $event->extendSocialite('discord', \SocialiteProviders\Google\Provider::class);
         });
+        Gate::define('viewApiDocs', function () {
+            return true;
+        });
     }
 }

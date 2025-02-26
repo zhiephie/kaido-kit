@@ -95,7 +95,11 @@ class UserResource extends Resource
                         Select::make('role')
                             ->relationship('roles', 'name')
                             ->multiple()
-                            ->required(),
+                            ->required()
+                            ->searchable()
+                            ->preload()
+                            ->optionsLimit(10)
+                            ->getOptionLabelFromRecordUsing(fn($record) => $record->name),
                     ]),
                 // Impersonate::make(),
                 Tables\Actions\DeleteAction::make(),

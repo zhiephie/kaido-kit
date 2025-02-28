@@ -189,6 +189,8 @@ We welcome contributions! Please follow these steps:
 - 💬 [Whatsapp community](https://chat.whatsapp.com/HJtRp9Eo5wl6NhYIJbkuZL)
 
 ## ⭐ Show your support
+For Indonesian community you can get support and the recording course for how to create this kit here : 
+https://www.dosenngoding.com/courses/8
 
 Give a ⭐️ if this project helped you!
 ## Star History
